@@ -10,7 +10,6 @@ namespace Proffer.Models.ApiModels
     public class ApiLoginModel
     {
         [Key]
-        [ForeignKey("User_id")]
         public int User_id { get; set; }
 
         [Required]
