@@ -448,7 +448,7 @@ namespace ProfferAPI.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("/api/Token")]
-        public async Task<IActionResult> GenerateToken([FromBody] ApplicationUser model)
+        public async Task<IActionResult> GenerateToken([FromBody] ApiLogin model)
         {
             if (!ModelState.IsValid)
             {
@@ -458,7 +458,7 @@ namespace ProfferAPI.Controllers
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user != null)
             {
-                var result = await _signInManager.CheckPasswordSignInAsync(user, model.PasswordHash, false);
+                var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
                 if (result.Succeeded)
                 {
                     var claims = new[]
