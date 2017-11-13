@@ -11,7 +11,7 @@ using System;
 namespace ProfferAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171113072156_ProductsModel")]
+    [Migration("20171113114422_ProductsModel")]
     partial class ProductsModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
