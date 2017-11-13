@@ -1,0 +1,42 @@
+﻿@model ProfferAPI.Models.SalesModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SalesModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Offer_price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Offer_price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sales_price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sales_price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Sales_id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
