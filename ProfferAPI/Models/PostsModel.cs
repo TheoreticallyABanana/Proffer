@@ -13,8 +13,8 @@ namespace ProfferAPI.Models
         [Required]
         public int Posts_id { get; set; }
 
-        //[Required]
-        //public DateTime Date_listed { get; set; }
+        [Required]
+        public DateTime Date_listed { get; set; }
 
         [Required]
         public int Product_id { get; set; }
