@@ -25,7 +25,6 @@ namespace ProfferAPI.Data
 
         public DbSet<ProfferAPI.Models.ProductsModel> ProductsModel { get; set; }
         public DbSet<ProfferAPI.Models.SalesModel> SalesModel { get; set; }
-        public DbSet<ProfferAPI.Models.PostsModel> PostsModel { get; set; }
         public DbSet<ProfferAPI.Models.ApplicationUser> ApplicationUser { get; set; }
     }
 }

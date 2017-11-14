@@ -19,13 +19,17 @@ namespace ProfferAPI.Models
 
         public string Description { get; set; }
 
-        public string Product_tag { get; set; }
+        public string Tag { get; set; }
+
+        public DateTime Upload_date { get; set; }
+
+        public int Image_int { get; set; }
 
         [Required]
         public string User_id { get; set; }
         [ForeignKey("User_id")]
         public ApplicationUser ApplicationUser { get; set; }
 
-        public List<PostsModel> PostsModel { get; set; }
+        public List<SalesModel> SalesModel { get; set; }
     }
 }

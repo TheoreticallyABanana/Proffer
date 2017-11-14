@@ -13,9 +13,11 @@ using Microsoft.Extensions.Options;
 using ProfferAPI.Models;
 using ProfferAPI.Models.ManageViewModels;
 using ProfferAPI.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace ProfferAPI.Controllers
 {
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Authorize]
     [Route("[controller]/[action]")]
     public class ManageController : Controller

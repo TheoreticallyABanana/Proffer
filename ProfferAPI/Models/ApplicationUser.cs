@@ -10,5 +10,6 @@ namespace ProfferAPI.Models
     public class ApplicationUser : IdentityUser
     {
         public List<ProductsModel> ProductsModel { get; set; }
+        public List<SalesModel> SalesModel { get; set; }
     }
 }

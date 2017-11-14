@@ -7,11 +7,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProfferAPI.Data;
 using ProfferAPI.Models;
+using System.Net;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace ProfferAPI.Controllers.API
 {
     [Produces("application/json")]
     [Route("api/SalesModels")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class SalesModelsController : Controller
     {
         private readonly ApplicationDbContext _context;
