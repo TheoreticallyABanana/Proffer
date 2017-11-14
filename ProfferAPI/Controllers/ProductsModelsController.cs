@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProfferAPI.Data;
 using ProfferAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProfferAPI.Controllers
 {
+    [Authorize]
     public class ProductsModelsController : Controller
     {
         private readonly ApplicationDbContext _context;
