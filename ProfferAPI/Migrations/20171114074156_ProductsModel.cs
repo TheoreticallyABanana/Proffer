@@ -161,9 +161,11 @@ namespace ProfferAPI.Migrations
                     Product_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Description = table.Column<string>(type: "longtext", nullable: true),
+                    Image_int = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "longtext", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(65, 30)", nullable: false),
-                    Product_tag = table.Column<string>(type: "longtext", nullable: true),
+                    Tag = table.Column<string>(type: "longtext", nullable: true),
+                    Upload_date = table.Column<DateTime>(type: "datetime", nullable: false),
                     User_id = table.Column<string>(type: "varchar(127)", nullable: false)
                 },
                 constraints: table =>
@@ -183,43 +185,22 @@ namespace ProfferAPI.Migrations
                 {
                     Sales_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Offer_price = table.Column<decimal>(type: "decimal(65, 30)", nullable: false),
+                    Date_sold = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Product_id = table.Column<int>(type: "int", nullable: false),
                     Sales_price = table.Column<decimal>(type: "decimal(65, 30)", nullable: false),
-                    Status = table.Column<string>(type: "longtext", nullable: false),
                     User_id = table.Column<string>(type: "varchar(127)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SalesModel", x => x.Sales_id);
                     table.ForeignKey(
-                        name: "FK_SalesModel_AspNetUsers_User_id",
-                        column: x => x.User_id,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PostsModel",
-                columns: table => new
-                {
-                    Posts_id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Date_listed = table.Column<DateTime>(type: "datetime", nullable: false),
-                    Product_id = table.Column<int>(type: "int", nullable: false),
-                    User_id = table.Column<string>(type: "varchar(127)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PostsModel", x => x.Posts_id);
-                    table.ForeignKey(
-                        name: "FK_PostsModel_ProductsModel_Product_id",
+                        name: "FK_SalesModel_ProductsModel_Product_id",
                         column: x => x.Product_id,
                         principalTable: "ProductsModel",
                         principalColumn: "Product_id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PostsModel_AspNetUsers_User_id",
+                        name: "FK_SalesModel_AspNetUsers_User_id",
                         column: x => x.User_id,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -264,19 +245,14 @@ namespace ProfferAPI.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_PostsModel_Product_id",
-                table: "PostsModel",
-                column: "Product_id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PostsModel_User_id",
-                table: "PostsModel",
-                column: "User_id");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ProductsModel_User_id",
                 table: "ProductsModel",
                 column: "User_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SalesModel_Product_id",
+                table: "SalesModel",
+                column: "Product_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SalesModel_User_id",
@@ -300,9 +276,6 @@ namespace ProfferAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "PostsModel");
 
             migrationBuilder.DropTable(
                 name: "SalesModel");

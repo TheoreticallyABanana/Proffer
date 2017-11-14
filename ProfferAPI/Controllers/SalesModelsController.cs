@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ProfferAPI.Data;
 using ProfferAPI.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace ProfferAPI.Controllers
 {
@@ -24,7 +25,7 @@ namespace ProfferAPI.Controllers
         // GET: SalesModels
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.SalesModel.Include(s => s.ApplicationUser);
+            var applicationDbContext = _context.SalesModel.Include(s => s.ApplicationUser).Include(s => s.ProductsModel);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -38,6 +39,7 @@ namespace ProfferAPI.Controllers
 
             var salesModel = await _context.SalesModel
                 .Include(s => s.ApplicationUser)
+                .Include(s => s.ProductsModel)
                 .SingleOrDefaultAsync(m => m.Sales_id == id);
             if (salesModel == null)
             {
@@ -50,7 +52,8 @@ namespace ProfferAPI.Controllers
         // GET: SalesModels/Create
         public IActionResult Create()
         {
-            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["User_id"] = new SelectList(_context.ApplicationUser, "Id", "Id");
+            ViewData["Product_id"] = new SelectList(_context.ProductsModel, "Product_id", "User_id");
             return View();
         }
 
@@ -59,7 +62,7 @@ namespace ProfferAPI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Sales_id,Offer_price,Sales_price,User_id,Status")] SalesModel salesModel)
+        public async Task<IActionResult> Create([Bind("Sales_id,Sales_price,Date_sold,User_id,Product_id")] SalesModel salesModel)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +70,8 @@ namespace ProfferAPI.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Id", salesModel.User_id);
+            ViewData["User_id"] = new SelectList(_context.ApplicationUser, "Id", "Id", salesModel.User_id);
+            ViewData["Product_id"] = new SelectList(_context.ProductsModel, "Product_id", "User_id", salesModel.Product_id);
             return View(salesModel);
         }
 
@@ -84,7 +88,8 @@ namespace ProfferAPI.Controllers
             {
                 return NotFound();
             }
-            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Id", salesModel.User_id);
+            ViewData["User_id"] = new SelectList(_context.ApplicationUser, "Id", "Id", salesModel.User_id);
+            ViewData["Product_id"] = new SelectList(_context.ProductsModel, "Product_id", "User_id", salesModel.Product_id);
             return View(salesModel);
         }
 
@@ -93,7 +98,7 @@ namespace ProfferAPI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Sales_id,Offer_price,Sales_price,User_id,Status")] SalesModel salesModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Sales_id,Sales_price,Date_sold,User_id,Product_id")] SalesModel salesModel)
         {
             if (id != salesModel.Sales_id)
             {
@@ -120,7 +125,8 @@ namespace ProfferAPI.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Id", salesModel.User_id);
+            ViewData["User_id"] = new SelectList(_context.ApplicationUser, "Id", "Id", salesModel.User_id);
+            ViewData["Product_id"] = new SelectList(_context.ProductsModel, "Product_id", "User_id", salesModel.Product_id);
             return View(salesModel);
         }
 
@@ -134,6 +140,7 @@ namespace ProfferAPI.Controllers
 
             var salesModel = await _context.SalesModel
                 .Include(s => s.ApplicationUser)
+                .Include(s => s.ProductsModel)
                 .SingleOrDefaultAsync(m => m.Sales_id == id);
             if (salesModel == null)
             {

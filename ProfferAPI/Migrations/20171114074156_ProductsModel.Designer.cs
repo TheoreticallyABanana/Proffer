@@ -11,7 +11,7 @@ using System;
 namespace ProfferAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171114051337_ProductsModel")]
+    [Migration("20171114074156_ProductsModel")]
     partial class ProductsModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -178,27 +178,6 @@ namespace ProfferAPI.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("ProfferAPI.Models.PostsModel", b =>
-                {
-                    b.Property<int>("Posts_id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("Date_listed");
-
-                    b.Property<int>("Product_id");
-
-                    b.Property<string>("User_id")
-                        .IsRequired();
-
-                    b.HasKey("Posts_id");
-
-                    b.HasIndex("Product_id");
-
-                    b.HasIndex("User_id");
-
-                    b.ToTable("PostsModel");
-                });
-
             modelBuilder.Entity("ProfferAPI.Models.ProductsModel", b =>
                 {
                     b.Property<int>("Product_id")
@@ -206,11 +185,15 @@ namespace ProfferAPI.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<int>("Image_int");
+
                     b.Property<string>("Name");
 
                     b.Property<decimal>("Price");
 
-                    b.Property<string>("Product_tag");
+                    b.Property<string>("Tag");
+
+                    b.Property<DateTime>("Upload_date");
 
                     b.Property<string>("User_id")
                         .IsRequired();
@@ -227,17 +210,18 @@ namespace ProfferAPI.Migrations
                     b.Property<int>("Sales_id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<decimal>("Offer_price");
+                    b.Property<DateTime>("Date_sold");
+
+                    b.Property<int>("Product_id");
 
                     b.Property<decimal>("Sales_price");
-
-                    b.Property<string>("Status")
-                        .IsRequired();
 
                     b.Property<string>("User_id")
                         .IsRequired();
 
                     b.HasKey("Sales_id");
+
+                    b.HasIndex("Product_id");
 
                     b.HasIndex("User_id");
 
@@ -289,19 +273,6 @@ namespace ProfferAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("ProfferAPI.Models.PostsModel", b =>
-                {
-                    b.HasOne("ProfferAPI.Models.ProductsModel", "ProductsModel")
-                        .WithMany("PostsModel")
-                        .HasForeignKey("Product_id")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ProfferAPI.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("User_id")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("ProfferAPI.Models.ProductsModel", b =>
                 {
                     b.HasOne("ProfferAPI.Models.ApplicationUser", "ApplicationUser")
@@ -312,8 +283,13 @@ namespace ProfferAPI.Migrations
 
             modelBuilder.Entity("ProfferAPI.Models.SalesModel", b =>
                 {
+                    b.HasOne("ProfferAPI.Models.ProductsModel", "ProductsModel")
+                        .WithMany("SalesModel")
+                        .HasForeignKey("Product_id")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("ProfferAPI.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
+                        .WithMany("SalesModel")
                         .HasForeignKey("User_id")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using ProfferAPI.Data;
 using ProfferAPI.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace ProfferAPI.Controllers
 {
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Authorize]
     public class ProductsModelsController : Controller
     {
@@ -50,7 +52,7 @@ namespace ProfferAPI.Controllers
         // GET: ProductsModels/Create
         public IActionResult Create()
         {
-            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["User_id"] = new SelectList(_context.ApplicationUser, "Id", "Id");
             return View();
         }
 
@@ -59,7 +61,7 @@ namespace ProfferAPI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Product_id,Name,Price,Description,Product_tag,User_id")] ProductsModel productsModel)
+        public async Task<IActionResult> Create([Bind("Product_id,Name,Price,Description,Tag,Upload_date,Image_int,User_id")] ProductsModel productsModel)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +69,7 @@ namespace ProfferAPI.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Id", productsModel.User_id);
+            ViewData["User_id"] = new SelectList(_context.ApplicationUser, "Id", "Id", productsModel.User_id);
             return View(productsModel);
         }
 
@@ -84,7 +86,7 @@ namespace ProfferAPI.Controllers
             {
                 return NotFound();
             }
-            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Id", productsModel.User_id);
+            ViewData["User_id"] = new SelectList(_context.ApplicationUser, "Id", "Id", productsModel.User_id);
             return View(productsModel);
         }
 
@@ -93,7 +95,7 @@ namespace ProfferAPI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Product_id,Name,Price,Description,Product_tag,User_id")] ProductsModel productsModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Product_id,Name,Price,Description,Tag,Upload_date,Image_int,User_id")] ProductsModel productsModel)
         {
             if (id != productsModel.Product_id)
             {
@@ -120,7 +122,7 @@ namespace ProfferAPI.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Id", productsModel.User_id);
+            ViewData["User_id"] = new SelectList(_context.ApplicationUser, "Id", "Id", productsModel.User_id);
             return View(productsModel);
         }
 

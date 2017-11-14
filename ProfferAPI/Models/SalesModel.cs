@@ -14,10 +14,10 @@ namespace ProfferAPI.Models
         public int Sales_id { get; set; }
 
         [Required]
-        public decimal Offer_price { get; set; }
+        public decimal Sales_price { get; set; }
 
         [Required]
-        public decimal Sales_price { get; set; }
+        public DateTime Date_sold { get; set; }
 
         [Required]
         public string User_id { get; set; }
@@ -25,6 +25,8 @@ namespace ProfferAPI.Models
         public ApplicationUser ApplicationUser { get; set; }
 
         [Required]
-        public string Status { get; set; }
+        public int Product_id { get; set; }
+        [ForeignKey("Product_id")]
+        public ProductsModel ProductsModel { get; set; }
     }
 }

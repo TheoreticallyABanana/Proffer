@@ -5,66 +5,66 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using ProfferAPI.Data;
 using ProfferAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace ProfferAPI.Controllers.API
 {
     [Produces("application/json")]
-    [Route("api/ProductsModels")]
+    [Route("api/ApplicationUsers")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public class ProductsModelsController : Controller
+    public class ApplicationUsersController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ProductsModelsController(ApplicationDbContext context)
+        public ApplicationUsersController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/ProductsModels
+        // GET: api/ApplicationUsers
         [HttpGet]
-        public IEnumerable<ProductsModel> GetProductsModel()
+        public IEnumerable<ApplicationUser> GetApplicationUser()
         {
-            return _context.ProductsModel;
+            return _context.ApplicationUser;
         }
 
-        // GET: api/ProductsModels/5
+        // GET: api/ApplicationUsers/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProductsModel([FromRoute] int id)
+        public async Task<IActionResult> GetApplicationUser([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var productsModel = await _context.ProductsModel.SingleOrDefaultAsync(m => m.Product_id == id);
+            var applicationUser = await _context.ApplicationUser.SingleOrDefaultAsync(m => m.Id == id);
 
-            if (productsModel == null)
+            if (applicationUser == null)
             {
                 return NotFound();
             }
 
-            return Ok(productsModel);
+            return Ok(applicationUser);
         }
 
-        // PUT: api/ProductsModels/5
+        // PUT: api/ApplicationUsers/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProductsModel([FromRoute] int id, [FromBody] ProductsModel productsModel)
+        public async Task<IActionResult> PutApplicationUser([FromRoute] string id, [FromBody] ApplicationUser applicationUser)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != productsModel.Product_id)
+            if (id != applicationUser.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(productsModel).State = EntityState.Modified;
+            _context.Entry(applicationUser).State = EntityState.Modified;
 
             try
             {
@@ -72,7 +72,7 @@ namespace ProfferAPI.Controllers.API
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductsModelExists(id))
+                if (!ApplicationUserExists(id))
                 {
                     return NotFound();
                 }
@@ -85,45 +85,45 @@ namespace ProfferAPI.Controllers.API
             return NoContent();
         }
 
-        // POST: api/ProductsModels
+        // POST: api/ApplicationUsers
         [HttpPost]
-        public async Task<IActionResult> PostProductsModel([FromBody] ProductsModel productsModel)
+        public async Task<IActionResult> PostApplicationUser([FromBody] ApplicationUser applicationUser)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.ProductsModel.Add(productsModel);
+            _context.ApplicationUser.Add(applicationUser);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProductsModel", new { id = productsModel.Product_id }, productsModel);
+            return CreatedAtAction("GetApplicationUser", new { id = applicationUser.Id }, applicationUser);
         }
 
-        // DELETE: api/ProductsModels/5
+        // DELETE: api/ApplicationUsers/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProductsModel([FromRoute] int id)
+        public async Task<IActionResult> DeleteApplicationUser([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var productsModel = await _context.ProductsModel.SingleOrDefaultAsync(m => m.Product_id == id);
-            if (productsModel == null)
+            var applicationUser = await _context.ApplicationUser.SingleOrDefaultAsync(m => m.Id == id);
+            if (applicationUser == null)
             {
                 return NotFound();
             }
 
-            _context.ProductsModel.Remove(productsModel);
+            _context.ApplicationUser.Remove(applicationUser);
             await _context.SaveChangesAsync();
 
-            return Ok(productsModel);
+            return Ok(applicationUser);
         }
 
-        private bool ProductsModelExists(int id)
+        private bool ApplicationUserExists(string id)
         {
-            return _context.ProductsModel.Any(e => e.Product_id == id);
+            return _context.ApplicationUser.Any(e => e.Id == id);
         }
     }
 }
