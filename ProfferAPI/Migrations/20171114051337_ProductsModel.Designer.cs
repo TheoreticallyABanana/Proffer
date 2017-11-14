@@ -11,7 +11,7 @@ using System;
 namespace ProfferAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171113114422_ProductsModel")]
+    [Migration("20171114051337_ProductsModel")]
     partial class ProductsModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -182,6 +182,8 @@ namespace ProfferAPI.Migrations
                 {
                     b.Property<int>("Posts_id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("Date_listed");
 
                     b.Property<int>("Product_id");
 

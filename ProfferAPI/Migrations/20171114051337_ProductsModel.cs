@@ -205,6 +205,7 @@ namespace ProfferAPI.Migrations
                 {
                     Posts_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Date_listed = table.Column<DateTime>(type: "datetime", nullable: false),
                     Product_id = table.Column<int>(type: "int", nullable: false),
                     User_id = table.Column<string>(type: "varchar(127)", nullable: false)
                 },

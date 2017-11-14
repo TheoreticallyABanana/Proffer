@@ -182,6 +182,8 @@ namespace ProfferAPI.Migrations
                     b.Property<int>("Posts_id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("Date_listed");
+
                     b.Property<int>("Product_id");
 
                     b.Property<string>("User_id")
