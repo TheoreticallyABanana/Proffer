@@ -7,13 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProfferAPI.Data;
 using ProfferAPI.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace ProfferAPI.Controllers
 {
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    [Authorize]
     public class ProductsModelsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -61,7 +57,7 @@ namespace ProfferAPI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Product_id,Name,Price,Description,Tag,Upload_date,Image_int,User_id")] ProductsModel productsModel)
+        public async Task<IActionResult> Create([Bind("Product_id,Name,Price,Description,Tag,Upload_date,ImageName,User_id")] ProductsModel productsModel)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +91,7 @@ namespace ProfferAPI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Product_id,Name,Price,Description,Tag,Upload_date,Image_int,User_id")] ProductsModel productsModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Product_id,Name,Price,Description,Tag,Upload_date,ImageName,User_id")] ProductsModel productsModel)
         {
             if (id != productsModel.Product_id)
             {

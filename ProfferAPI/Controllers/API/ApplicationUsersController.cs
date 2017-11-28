@@ -14,7 +14,7 @@ namespace ProfferAPI.Controllers.API
 {
     [Produces("application/json")]
     [Route("api/ApplicationUsers")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ApplicationUsersController : Controller
     {
         private readonly ApplicationDbContext _context;

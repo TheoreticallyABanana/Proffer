@@ -23,7 +23,7 @@ namespace ProfferAPI.Models
 
         public DateTime Upload_date { get; set; }
 
-        public int Image_int { get; set; }
+        public string ImageName { get; set; }
 
         [Required]
         public string User_id { get; set; }

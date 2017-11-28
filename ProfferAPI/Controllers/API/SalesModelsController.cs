@@ -10,12 +10,13 @@ using ProfferAPI.Models;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Security.Claims;
 
 namespace ProfferAPI.Controllers.API
 {
     [Produces("application/json")]
     [Route("api/SalesModels")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class SalesModelsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -126,5 +127,10 @@ namespace ProfferAPI.Controllers.API
         {
             return _context.SalesModel.Any(e => e.Sales_id == id);
         }
+
+        //private Task<string> getUserIdAsync()
+        //{
+            
+        //}
     }
 }

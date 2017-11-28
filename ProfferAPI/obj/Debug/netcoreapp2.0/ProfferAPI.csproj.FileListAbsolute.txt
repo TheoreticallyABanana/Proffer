@@ -6,7 +6,7 @@ C:\Users\Jeff\Desktop\Education\NM Tafe\SP\Diploma\Semester 2\Advanced OOP\Proff
 C:\Users\Jeff\Desktop\Education\NM Tafe\SP\Diploma\Semester 2\Advanced OOP\ProfferAPI\ProfferAPI\obj\Debug\netcoreapp2.0\ProfferAPI.AssemblyInfoInputs.cache
 C:\Users\Jeff\Desktop\Education\NM Tafe\SP\Diploma\Semester 2\Advanced OOP\ProfferAPI\ProfferAPI\obj\Debug\netcoreapp2.0\ProfferAPI.AssemblyInfo.cs
 C:\Users\Jeff\Desktop\Education\NM Tafe\SP\Diploma\Semester 2\Advanced OOP\ProfferAPI\ProfferAPI\bin\Debug\netcoreapp2.0\ProfferAPI.pdb
-C:\Users\Jeff\Desktop\Education\NM Tafe\SP\Diploma\Semester 2\Advanced OOP\ProfferAPI\ProfferAPI\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
 C:\Users\Jeff\Desktop\Education\NM Tafe\SP\Diploma\Semester 2\Advanced OOP\ProfferAPI\ProfferAPI\obj\Debug\netcoreapp2.0\ProfferAPI.dll
 C:\Users\Jeff\Desktop\Education\NM Tafe\SP\Diploma\Semester 2\Advanced OOP\ProfferAPI\ProfferAPI\obj\Debug\netcoreapp2.0\ProfferAPI.pdb
 C:\Users\Jeff\Desktop\Education\NM Tafe\SP\Diploma\Semester 2\Advanced OOP\ProfferAPI\ProfferAPI\obj\Debug\netcoreapp2.0\ProfferAPI.csprojResolveAssemblyReference.cache
+C:\Users\Jeff\Desktop\Education\NM Tafe\SP\Diploma\Semester 2\Advanced OOP\ProfferAPI\ProfferAPI\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
