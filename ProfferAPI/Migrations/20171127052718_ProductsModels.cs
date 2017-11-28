@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ProfferAPI.Migrations
 {
-    public partial class ProductsModel : Migration
+    public partial class ProductsModels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -161,7 +161,7 @@ namespace ProfferAPI.Migrations
                     Product_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Description = table.Column<string>(type: "longtext", nullable: true),
-                    Image_int = table.Column<int>(type: "int", nullable: false),
+                    ImageName = table.Column<string>(type: "longtext", nullable: true),
                     Name = table.Column<string>(type: "longtext", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(65, 30)", nullable: false),
                     Tag = table.Column<string>(type: "longtext", nullable: true),

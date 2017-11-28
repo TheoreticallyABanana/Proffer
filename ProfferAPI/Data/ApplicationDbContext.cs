@@ -23,8 +23,8 @@ namespace ProfferAPI.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<ProfferAPI.Models.ProductsModel> ProductsModel { get; set; }
-        public DbSet<ProfferAPI.Models.SalesModel> SalesModel { get; set; }
-        public DbSet<ProfferAPI.Models.ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<ProductsModel> ProductsModel { get; set; }
+        public DbSet<SalesModel> SalesModel { get; set; }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
     }
 }

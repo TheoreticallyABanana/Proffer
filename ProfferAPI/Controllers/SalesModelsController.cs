@@ -9,6 +9,8 @@ using ProfferAPI.Data;
 using ProfferAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace ProfferAPI.Controllers
 {
@@ -16,10 +18,12 @@ namespace ProfferAPI.Controllers
     public class SalesModelsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private string id;
 
-        public SalesModelsController(ApplicationDbContext context)
+        public SalesModelsController(ApplicationDbContext context, IHttpContextAccessor ContextAcc)
         {
             _context = context;
+            id = ContextAcc.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
         }
 
         // GET: SalesModels

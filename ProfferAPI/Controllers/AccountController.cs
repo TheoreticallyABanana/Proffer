@@ -447,7 +447,8 @@ namespace ProfferAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        [Route("/api/Token")]
+
+        [Route("/api/Login")]
         public async Task<IActionResult> GenerateToken([FromBody] ApiLogin model)
         {
             if (!ModelState.IsValid)

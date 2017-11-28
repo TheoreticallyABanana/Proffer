@@ -184,7 +184,7 @@ namespace ProfferAPI.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<int>("Image_int");
+                    b.Property<string>("ImageName");
 
                     b.Property<string>("Name");
 

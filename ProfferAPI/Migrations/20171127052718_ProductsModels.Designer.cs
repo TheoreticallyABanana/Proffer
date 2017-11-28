@@ -11,8 +11,8 @@ using System;
 namespace ProfferAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171114074156_ProductsModel")]
-    partial class ProductsModel
+    [Migration("20171127052718_ProductsModels")]
+    partial class ProductsModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -185,7 +185,7 @@ namespace ProfferAPI.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<int>("Image_int");
+                    b.Property<string>("ImageName");
 
                     b.Property<string>("Name");
 
